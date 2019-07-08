@@ -1,6 +1,6 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
+const { RESTDataSource } = require("apollo-datasource-rest");
 
-export class TestAPI extends RESTDataSource {
+ class TestAPI extends RESTDataSource {
   constructor() {
     super();
     this.baseURL = 'https://graphql-123-json.herokuapp.com/';
@@ -32,3 +32,6 @@ export class TestAPI extends RESTDataSource {
     return result[0];
   }
 };
+
+
+module.exports = TestAPI;
