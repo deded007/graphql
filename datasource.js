@@ -3,7 +3,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 export class TestAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'http://localhost:3000/';
+    this.baseURL = 'https://graphql-123-json.herokuapp.com/';
   }
 
   async getAllStations() {
