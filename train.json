@@ -1,0 +1,105 @@
+{
+    "timetables": [
+        {
+            "StationID": "3170",
+            "StationName":{"Zhtw":"歸來","En":"Guilai"},
+            "TimeTables": [
+                {
+                    "TrainNo": "2103",
+                    "DepartureTime": "05:49"
+                }
+            ]
+        },
+        {
+            "StationID": "3180",
+            "StationName":{"Zhtw":"銅鑼","En":"Tongluo"},
+            "TimeTables": [
+                {
+                    "TrainNo": "2103",
+                    "DepartureTime": "05:54"
+                },
+                {
+                    "TrainNo": "3157",
+                    "DepartureTime": "06:20"
+                },
+                {
+                    "TrainNo": "2113",
+                    "DepartureTime": "06:42"
+                },
+                {
+                    "TrainNo": "2011",
+                    "DepartureTime": "07:20"
+                },
+                {
+                    "TrainNo": "2123",
+                    "DepartureTime": "07:42"
+                },
+                {
+                    "TrainNo": "3177",
+                    "DepartureTime": "08:11"
+                },
+                {
+                    "TrainNo": "2133",
+                    "DepartureTime": "08:30"
+                },
+                {
+                    "TrainNo": "2143",
+                    "DepartureTime": "09:32"
+                },
+                {
+                    "TrainNo": "2153",
+                    "DepartureTime": "10:35"
+                },
+                {
+                    "TrainNo": "2163",
+                    "DepartureTime": "11:24"
+                }
+            ]
+        }
+    ],
+    "stations": [
+        {
+            "StationID": "5010",
+            "StationName": {
+                "Zhtw": "歸來",
+                "En": "Guilai"
+            },
+            "StationPosition": {
+                "PositionLat": 22.65214,
+                "PositionLon": 120.50294
+            }
+        },
+        {
+            "StationID": "3170",
+            "StationName": {
+                "Zhtw": "南勢",
+                "En": "Nanshi"
+            },
+            "StationPosition": {
+                "PositionLat": 24.52234,
+                "PositionLon": 120.79157
+            }
+        },
+        {
+            "StationID": "3180",
+            "StationName": {
+                "Zhtw": "銅鑼",
+                "En": "Tongluo"
+            },
+            "StationPosition": {
+                "PositionLat": 24.48648,
+                "PositionLon": 120.78616
+            }
+        },
+        {
+            "StationID": "3181",
+            "StationName": {
+                "En": "Tongluo"
+            },
+            "StationPosition": {
+                "PositionLat": 24.481648,
+                "PositionLon": 120.78616
+            }
+        }
+    ]
+}
