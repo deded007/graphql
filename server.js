@@ -63,7 +63,7 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+server.listen({ process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
 // https://blog.apollographql.com/layering-graphql-on-top-of-rest-569c915083ad
