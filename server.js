@@ -2,6 +2,21 @@ const { ApolloServer, gql } = require("apollo-server");
 const TestAPI = require("./datasource");
 
 const typeDefs = gql`
+type StationPosition {
+  PositionLat:Float
+  PositionLon:Float
+}
+type AlertStation {
+  StationID:String
+  StationName:String
+  StationPosition:StationPosition
+}
+type Alert {
+ Title:String
+ Description:String 
+ Stations:[AlertStation]
+}
+
 type ZhEn {
   "中文"
   Zhtw:String
@@ -13,6 +28,7 @@ type Station {
   StationID:String
   "中文站名"
   StationName:ZhEn
+  StationPosition:StationPosition
 }
 
 type TimetableTimetable {
@@ -21,6 +37,7 @@ type TimetableTimetable {
   "到達時間"
   DepartureTime:String
 }
+
   """
   時刻表
   """
@@ -32,7 +49,10 @@ type Timetable {
  "時刻表"
  TimeTables:[TimetableTimetable]
 }
+
   type Query {
+ "通堵"
+  alerts: [Alert]
  "單一車站"
     station(StationID: String!): Station
  "所有車站"
@@ -46,11 +66,28 @@ type Timetable {
 
 const resolvers = {
   Query: {
+    alerts: (root, args, { dataSources }) => dataSources.testAPI.getAlerts(),
     station: (root, { StationID }, { dataSources }) => dataSources.testAPI.getStation(StationID),
     stations: (root, args, { dataSources }) => dataSources.testAPI.getAllStations(),
     timetable: (root, { StationID }, { dataSources }) => dataSources.testAPI.getTimetable(StationID),
     timetables: (root, args, { dataSources }) => dataSources.testAPI.getTimetables(),
   },
+  Alert: {
+    Stations: (parent) => {
+      const { Stations } = parent.Scope;
+      return Stations;
+    }
+  },
+  AlertStation: {
+    StationPosition: (parent, args, context) => {
+      var { StationID } = parent;
+
+      var a = context.dataSources.testAPI.getStation(StationID);
+      return Promise.all([a]).then(function (values) {
+        return values[0].StationPosition; 
+      });
+    }
+  }
   // Timetable: {
   //   Timetables: ({ z }) => z,
   // },
@@ -67,56 +104,3 @@ const server = new ApolloServer({
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
-// https://blog.apollographql.com/layering-graphql-on-top-of-rest-569c915083ad
-//https://github.com/apollographql/mvrp
-
-
-// query{
-//   stations{
-//     StationID
-//   }
-// }
-
-// query{
-//   station(StationID:"3180"){
-//     StationID
-//     StationName{
-//       Zhtw
-//     }
-//   }
-// }
-
-// query{
-//   timetables{
-//     StationID
-//     StationName{
-//       Zhtw
-//       En
-//     }
-//     TimeTables{
-//       TrainNo
-//       DepartureTime
-//     }
-//   }
-// }
-
-// query($StationID:String!){
-//   timetable(StationID:$StationID){
-//     StationID
-//     StationName{
-//       Zhtw
-//       En
-//     }
-//     TimeTables{
-//       TrainNo
-//       DepartureTime
-//     }
-//   }
-//   station(StationID:$StationID){
-//     StationID
-//     StationName{
-//       Zhtw
-//       En
-//     }
-//   }
-// }

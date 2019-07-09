@@ -1,4 +1,22 @@
 {
+    "alerts": [
+        {
+            "Title": "電車線斷落",
+            "Description": "苗栗=銅鑼間東正線(148K+700~900處)電車線斷落，於20：04修復，路線恢復雙線行車。",
+            "Scope": {
+                "Stations": [
+                    {
+                        "StationID": "3170",
+                        "StationName": "南勢"
+                    },
+                    {
+                        "StationID": "3180",
+                        "StationName": "銅鑼"
+                    }
+                ]
+            }
+        }
+    ],
     "timetables": [
         {
             "StationID": "3170",
