@@ -10,6 +10,7 @@ type AlertStation {
   StationID:String
   StationName:String
   StationPosition:StationPosition
+  TimeTables:[TimetableTimetable]
 }
 type Alert {
  Title:String
@@ -86,7 +87,18 @@ const resolvers = {
       return Promise.all([a]).then(function (values) {
         return values[0].StationPosition; 
       });
-    }
+    },
+    TimeTables: (parent, args, context) => {
+      var { StationID } = parent;
+      console.log(parent)
+
+      var a = context.dataSources.testAPI.getTimetable(StationID);
+      return Promise.all([a]).then(function (values) {
+        console.log("=================================")
+        console.log(values[0])
+        return values[0].TimeTables; 
+      });
+    },
   }
   // Timetable: {
   //   Timetables: ({ z }) => z,
@@ -97,7 +109,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => ({
-    testAPI: new TestAPI(),
+    testAPI: new TestAPI(),             
   }),
 });
 

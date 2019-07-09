@@ -21,7 +21,6 @@ const { RESTDataSource } = require("apollo-datasource-rest");
     const result = await this.get('stations', {
       StationID
     });
-console.log(result[0])
 return result[0];
   }
 
