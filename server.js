@@ -20,7 +20,7 @@ type Alert {
 
 type ZhEn {
   "中文"
-  Zhtw:String
+  Zh_tw:String
   "英文"
   En:String
 }
@@ -90,11 +90,9 @@ const resolvers = {
     },
     TimeTables: (parent, args, context) => {
       var { StationID } = parent;
-      console.log(parent)
 
       var a = context.dataSources.testAPI.getTimetable(StationID);
       return Promise.all([a]).then(function (values) {
-        console.log("=================================")
         console.log(values[0])
         return values[0].TimeTables; 
       });
@@ -114,6 +112,5 @@ const server = new ApolloServer({
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
-    console.log(process.env)
     console.log(`🚀 Server ready at ${url}`);
 });
