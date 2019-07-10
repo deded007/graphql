@@ -2,6 +2,9 @@ const { ApolloServer, gql } = require("apollo-server");
 const TestAPI = require("./datasource");
 
 const typeDefs = gql`
+"""
+經緯度
+"""
 type StationPosition {
   PositionLat:Float
   PositionLon:Float
@@ -12,18 +15,25 @@ type AlertStation {
   StationPosition:StationPosition
   TimeTables:[TimetableTimetable]
 }
+  """
+  通堵
+  """
 type Alert {
  Title:String
  Description:String 
  Stations:[AlertStation]
 }
 
+  "中英文"
 type ZhEn {
   "中文"
   Zh_tw:String
   "英文"
   En:String
 }
+  """
+  站名
+  """
 type Station {
   "編號"
   StationID:String
@@ -111,6 +121,6 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+server.listen({ port: process.env.PORT || 4100 }).then(({ url }) => {
     console.log(`🚀 Server ready at ${url}`);
 });
