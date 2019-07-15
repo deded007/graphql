@@ -43,7 +43,7 @@
       function introspectionProvider(introspectionQuery) {
         // This example expects a GraphQL server at the path /graphql.
         // Change this to point wherever you host your GraphQL server.
-        return fetch('https://graphql-123.herokuapp.com/', {
+        return fetch('./graphql', {
           method: 'post',
           headers: {
             'Accept': 'application/json',

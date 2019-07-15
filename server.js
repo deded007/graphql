@@ -1,5 +1,8 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer, gql } = require("apollo-server-express");
 const TestAPI = require("./datasource");
+var express = require('express');
+var app = express();
+
 
 const typeDefs = gql`
 """
@@ -121,6 +124,14 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen({ port: process.env.PORT || 4100 }).then(({ url }) => {
-    console.log(`🚀 Server ready at ${url}`);
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
 });
+server.applyMiddleware({ app }); // app is from an existing express app
+app.use(express.static('public'));
+
+app.listen({ port: process.env.PORT || 4100 }, function () {
+  console.log('Example app listening on port 4100!');
+});
+
