@@ -1,10 +1,10 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 
- class TestAPI extends RESTDataSource {
+class TestAPI extends RESTDataSource {
   constructor() {
     super();
-    //this.baseURL = 'http://localhost:3000';
-    this.baseURL = 'https://graphql-123-json.herokuapp.com/';
+    this.baseURL = 'http://localhost:3000';
+    //this.baseURL = 'https://graphql-123-json.herokuapp.com/';
   }
 
   async getAlerts() {
@@ -21,7 +21,7 @@ const { RESTDataSource } = require("apollo-datasource-rest");
     const result = await this.get('stations', {
       StationID
     });
-return result[0];
+    return result[0];
   }
 
 
@@ -38,7 +38,16 @@ return result[0];
 
     return result[0];
   }
-};
 
+  async getPeoples() {
+    var result = await this.get('peoples');
+    return result;
+  };
+
+  async getPeople(id) {
+    const result = await this.get('peoples/' + id);
+    return result;
+  };
+}
 
 module.exports = TestAPI;

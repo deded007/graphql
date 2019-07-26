@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 
 
-const typeDefs = gql`
+const typeDefs = gql `
 """
 經緯度
 """
@@ -64,6 +64,11 @@ type Timetable {
  TimeTables:[TimetableTimetable]
 }
 
+type People {
+  id:Int
+  friends:[People]
+}
+
   type Query {
  "通堵"
   alerts: [Alert]
@@ -75,6 +80,7 @@ type Timetable {
     timetable(StationID: String!): Timetable
  "所有車站時刻表"
     timetables: [Timetable]
+    people: [People]
   }
 `;
 
@@ -85,6 +91,7 @@ const resolvers = {
     stations: (root, args, { dataSources }) => dataSources.testAPI.getAllStations(),
     timetable: (root, { StationID }, { dataSources }) => dataSources.testAPI.getTimetable(StationID),
     timetables: (root, args, { dataSources }) => dataSources.testAPI.getTimetables(),
+    people: (root, args, { dataSources }) => dataSources.testAPI.getPeoples(),
   },
   Alert: {
     Stations: (parent) => {
@@ -95,43 +102,60 @@ const resolvers = {
   AlertStation: {
     StationPosition: (parent, args, context) => {
       var { StationID } = parent;
+      //return Promise.resolve(context.dataSources.testAPI.getStation(StationID))
 
       var a = context.dataSources.testAPI.getStation(StationID);
-      return Promise.all([a]).then(function (values) {
-        return values[0].StationPosition; 
+      return Promise.all([a]).then(function(values) {
+        return values[0].StationPosition;
       });
     },
     TimeTables: (parent, args, context) => {
       var { StationID } = parent;
 
       var a = context.dataSources.testAPI.getTimetable(StationID);
-      return Promise.all([a]).then(function (values) {
+      return Promise.all([a]).then(function(values) {
         console.log(values[0])
-        return values[0].TimeTables; 
+        return values[0].TimeTables;
       });
     },
-  }
-  // Timetable: {
-  //   Timetables: ({ z }) => z,
-  // },
+  },
+  People: {
+    friends: (parent, args, context) => {
+      var { id } = parent;
+      var a = context.dataSources.testAPI.getPeople(id);
+      return Promise.all([a]).then(function(values) {
+        if (values[0].friends.length) {
+          var promises = []
+          values[0].friends.forEach(id => {
+            promises.push(context.dataSources.testAPI.getPeople(id))
+          });
+
+          return Promise.all(promises).then(function(values) {
+            return values
+          });
+        } else
+          return null;
+      });
+    },
+
+  },
 };
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => ({
-    testAPI: new TestAPI(),             
+    testAPI: new TestAPI(),
   }),
 });
 
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 server.applyMiddleware({ app }); // app is from an existing express app
 app.use(express.static('public'));
 
-app.listen({ port: process.env.PORT || 4100 }, function () {
-  console.log('Example app listening on port 4100!');
+app.listen({ port: process.env.PORT || 4100 }, function() {
+  console.log('http://localhost:4100');
 });
-
