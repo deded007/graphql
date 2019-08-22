@@ -3,8 +3,8 @@ const { RESTDataSource } = require("apollo-datasource-rest");
 class TestAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'http://localhost:3000';
-    //this.baseURL = 'https://graphql-123-json.herokuapp.com/';
+    //this.baseURL = 'http://localhost:3000';
+    this.baseURL = 'https://graphql-123-json.herokuapp.com/';
   }
 
   async getAlerts() {
