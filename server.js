@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 
 
-const typeDefs = gql `
+const typeDefs = gql`
 """
 經緯度
 """
@@ -105,7 +105,7 @@ const resolvers = {
       //return Promise.resolve(context.dataSources.testAPI.getStation(StationID))
 
       var a = context.dataSources.testAPI.getStation(StationID);
-      return Promise.all([a]).then(function(values) {
+      return Promise.all([a]).then(function (values) {
         return values[0].StationPosition;
       });
     },
@@ -113,7 +113,7 @@ const resolvers = {
       var { StationID } = parent;
 
       var a = context.dataSources.testAPI.getTimetable(StationID);
-      return Promise.all([a]).then(function(values) {
+      return Promise.all([a]).then(function (values) {
         console.log(values[0])
         return values[0].TimeTables;
       });
@@ -123,14 +123,14 @@ const resolvers = {
     friends: (parent, args, context) => {
       var { id } = parent;
       var a = context.dataSources.testAPI.getPeople(id);
-      return Promise.all([a]).then(function(values) {
+      return Promise.all([a]).then(function (values) {
         if (values[0].friends.length) {
           var promises = []
           values[0].friends.forEach(id => {
             promises.push(context.dataSources.testAPI.getPeople(id))
           });
 
-          return Promise.all(promises).then(function(values) {
+          return Promise.all(promises).then(function (values) {
             return values
           });
         } else
@@ -147,15 +147,17 @@ const server = new ApolloServer({
   dataSources: () => ({
     testAPI: new TestAPI(),
   }),
+  introspection: true, // enables introspection of the schema
+  playground: true, // enables the actual playground
 });
 
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 server.applyMiddleware({ app }); // app is from an existing express app
 app.use(express.static('public'));
 
-app.listen({ port: process.env.PORT || 4100 }, function() {
+app.listen({ port: process.env.PORT || 4100 }, function () {
   console.log('http://localhost:4100');
 });
