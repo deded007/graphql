@@ -1,3 +1,5 @@
+npm run dev→nodemon hot refresh
+
 npm start
 
 /traffic.html是小抄

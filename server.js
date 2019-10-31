@@ -158,7 +158,6 @@ type Link {
   WeatherForecasts: [WeatherForecasts]
 }
 type Section {
-  SectionID: String
   "取得[高速公路局]路段即時資料"
   LiveTraffic: LiveTraffic
   StartLink: StarEndLink
