@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>123</title>
+  <style>
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      border-color: gray;
+    }
+
+    tr>td:first-child {
+      padding: 10px;
+    }
+
+    td {
+      border: 1px solid rgb(10, 10, 10);
+    }
+
+    a {
+      font-size: 110%;
+      display: block;
+      padding: 10px;
+    }
+
+    a:hover {
+      background-color: lightblue;
+    }
+    .docker{
+      background: url('https://avatar-static.segmentfault.com/604/519/6045191-1140000000383699_huge128') no-repeat;
+      background-size: 32px 32px;
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+    }
+  </style>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+  <script>
+  $( document ).ready(function() {
+    var today  = new Date();
+    $('#d'+today.getDay()).css("color","red").css("font-weight","bold");
+
+
+    var　map=new　Map();
+    map.set(1,"7");
+    map.set(4,"11");
+    map.set(7,"16");
+    map.set(10,"8");
+    map.set(13,"12");
+    map.set(16,"17");
+    map.set(19,"13");
+    map.set(22,"19");
+    map.set(25,"20");
+    map.set(28,"21");
+    map.set(31,"22");
+    console.log(map.get(today.getDate()))
+    $('#d'+today.getDay()).append("　　"+map.get(today.getDate()));
+});
+</script>
+</head>
+
+<body>
+  <table col>
+    <tr>
+      <td></td>
+      <td style="text-align: center;background-color:aliceblue;">其他</td>
+      <td colspan="2" style="text-align: center;background-color:aqua;">測試站</td>
+      <td colspan="2" style="text-align: center;background-color:pink;">Staging</td>
+      <td colspan="2" style="text-align: center;background-color:lightgoldenrodyellow;">正式站</td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(255, 69, 69)">PTX</td>
+      <td>
+        <a href='http://192.168.99.31/MOTC/v2/Air/Airport?$top=30&$format=JSON' target="_blank">new log</a>
+        <a href='https://graphql-123.herokuapp.com/traffic.html' target="_blank">Graphql Demo</a>
+        <a href='http://m2k.motc.gov.tw/cgi-bin/login?index=1' target="_blank">MOTC MAIL</a>
+        <a href='https://tasks.office.com/iisigroup.com/ZH-TW/Home/Planner#/plantaskboard?groupId=6afaee75-8725-485e-980a-7bb8df210342&planId=TW9NQL0km0qKcHxfWEiXtcgACbpa' target="_blank">planner</a>
+        <a href='http://192.168.99.220:9000/' target="_blank">docker UI(DMZ)</a>
+        
+      </td>
+      <td>
+        <a href='http://210.59.250.227/ptx' target="_blank">前台</a>
+        <a href='http://192.168.99.31/MOTC' target="_blank">Swagger</a>
+        <a href='https://tasks.office.com/iisigroup.com/ZH-TW/Home/Planner#/plantaskboard?groupId=6afaee75-8725-485e-980a-7bb8df210342&planId=TW9NQL0km0qKcHxfWEiXtcgACbpa' target="_blank">planner</a>
+      </td>
+      <td>
+          <a href='http://210.59.250.227/PTXOrigin/index.html#/Login ' target="_blank">來源單位後台</a>
+          <a href='http://192.168.99.95:5605 ' target="_blank">Kibana</a>
+          <a href='http://192.168.99.94:8085/sources/1/chronograf/data-explorer' target="_blank">chronograf</a>
+          
+      </td>
+      <td>
+        `
+      </td>
+      <td>ㄅ</td>
+      <td>
+        <a href='https://ptx.transportdata.tw/PTX' target="_blank">前台</a>
+        <a href='https://ptx.transportdata.tw/MOTC' target="_blank">Swagger</a>
+        <a href='https://ptx.transportdata.tw/MOTC/v3/Basic/Metadata' target="_blank">Metadata</a>
+      </td>
+      <td>
+        <a href='https://ptx.transportdata.tw/PTXOrigin/index.html#/Login' target="_blank">來源單位後台</a>
+        <a href='http://192.168.201.180:5601/app/kibana' target="_blank">kibana(內網)</a>
+        <a href='http://192.168.201.100:8085' target="_blank">chronograf(內網)</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color: orange">TDX</td>
+      <td>
+        <a href='https://gist.motc.gov.tw/gist_api/Documentation/GistMetadata.json' target="_blank">Metadata Gist</a>
+        <a href='https://link.motc.gov.tw/Metadata/LinkMetadata.json' target="_blank">Metadata Link</a>
+      </td>
+      <td>
+        <a href='http://210.59.250.227/tdx/API/dataservice' target="_blank">前台</a>
+
+
+      </td>
+      <td>
+        <a href='http://210.59.250.227/tdx_backend/' target="_blank">後台</a>
+      </td>
+      <td>
+        <a href='https://210.59.250.220/?type=%E5%85%A8%E9%83%A8' target="_blank">前台8704</a><div class="docker"></div>
+        
+      </td>
+      <td>
+        <a href='https://210.59.250.220/tdx_backend/#/login' target="_blank">後台8703<div class="docker"></div></a>
+      </td>
+      <td>
+        <a href='https://tdx.transportdata.tw/TDX' target="_blank">前台<div class="docker"></div></a>
+        
+      </td>
+      <td>
+        <a href='https://tdx.transportdata.tw/tdx_backend/' target="_blank">後台<div class="docker"></div></a>
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color: yellow">TRAFFIC</td>
+      <td>
+      </td>
+      <td>
+        <a href='http://210.59.250.227/Traffic' target="_blank">前台</a>
+        <a href='http://210.59.250.227/TrafficAPIv2/v2/Metadata' target="_blank">Metadata v2</a>
+      </td>
+      <td>
+        <a href='http://210.59.250.227/Traffic_backend/#/login' target="_blank">後台</a>
+      </td>
+      <td>
+        <!-- <a href='' target="_blank">前台</a> -->
+        <a href='https://ban.traffic.transportdata.tw' target="_blank">前台<div class="docker"></div><br/><small>(99.220:7946)</small></a>
+      </td>
+      <td>
+        <a href='https://ban.traffic.transportdata.tw/Traffic_backend/#/login' target="_blank">後台<div class="docker"></div></a>
+      </td>
+      <td>
+        <a href='https://traffic.transportdata.tw/' target="_blank">前台<div class="docker"></div></a>
+        <a href='https://traffic.transportdata.tw/MOTC/v1/Road/Traffic/Metadata?$format=JSON' target="_blank">Metadata v1</a>
+      </td>
+      <td>
+        <a href='https://traffic.transportdata.tw/Traffic_backend/#/login' target="_blank">後台<div class="docker"></div></a>
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color: greenyellow">IOT</td>
+      <td></td>
+      <td><a href='http://210.59.250.227/iot-web/' target="_blank">前台</a></td>
+      <td><a href='http://210.59.250.227/iot/index.html#/login' target="_blank">後台</a></td>
+      <td><a href='https://iot.wra.gov.tw/test' target="_blank">前台<div class="docker"></div></a></td>
+      <td><a href='https://iotmanage.wra.gov.tw/test' target="_blank">後台<div class="docker"></div></a></td>
+      <td><a href='https://iot.wra.gov.tw/' target="_blank">前台<div class="docker"></div></a></td>
+      <td><a href='https://iotmanage.wra.gov.tw/iot/#/login' target="_blank">後台<div class="docker"></div></a></td>
+    </tr>
+  </table>
+
+
+  <pre>
+<div id="d1">7  8</div>
+<div id="d2">L  L</div>
+<div id="d3">8  4</div>
+
+<div id="d4">1  L</div>
+<div id="d5">8  0</div>
+<div id="d6">1  9</div>
+<div id="d0">L  0</div>
+
+  </pre>
+</body>
+</html>
